@@ -2,6 +2,7 @@ import { useState } from "react";
 import ConfirmModal from "./confirmModal";
 
 export default function TodoCard({ todo, onToggleDone, onDelete }) {
+  if (!todo) return null;
   const [modalType, setModalType] = useState(null);
 
   const handleConfirm = () => {
@@ -10,35 +11,94 @@ export default function TodoCard({ todo, onToggleDone, onDelete }) {
     setModalType(null);
   };
 
+  const getDeadlineStatus = () => {
+    if (!todo.deadline || todo.is_done) return null;
+
+    const today = new Date();
+    const deadlineDate = new Date(todo.deadline);
+    const diffTime = deadlineDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays < 0) return "overdue"; //overdue deadline
+    if (diffDays <= 2) return "near"; // deadline ≤ 2 day
+    return null;
+  };
+
+  const deadlineStatus = getDeadlineStatus();
+
   return (
     <>
       <div
         className={`p-5 rounded-xl grid transition-all ${
           todo.is_done
-            ? 'bg-[#0a192f] opacity-75 shadow-[inset_3px_3px_6px_#09152a,inset_-3px_-3px_6px_#0b1d34]'
-            : 'bg-gradient-to-br from-[#0a192f] to-[#112240] shadow-[5px_5px_15px_#09152a,-5px_-5px_15px_#0b1d34]'
+            ? "bg-[#0a192f] opacity-75 shadow-[inset_3px_3px_6px_#09152a,inset_-3px_-3px_6px_#0b1d34]"
+            : "bg-gradient-to-br from-[#0a192f] to-[#112240] shadow-[5px_5px_15px_#09152a,-5px_-5px_15px_#0b1d34]"
         }`}
       >
         <div className="flex justify-between items-start">
           <div className="flex items-start">
-            <div className={`w-5 h-5 mt-1 mr-3 rounded-full flex-shrink-0 ${
-              todo.is_done
-                ? 'bg-[#64ffda] shadow-[inset_1px_1px_3px_#57e6c4,inset_-1px_-1px_3px_#71fff0]'
-                : 'bg-[#0a192f] shadow-[inset_1px_1px_3px_#09152a,inset_-1px_-1px_3px_#0b1d34]'
-            }`}>
+            <div
+              className={`w-5 h-5 mt-1 mr-3 rounded-full flex-shrink-0 ${
+                todo.is_done
+                  ? "bg-[#64ffda] shadow-[inset_1px_1px_3px_#57e6c4,inset_-1px_-1px_3px_#71fff0]"
+                  : "bg-[#0a192f] shadow-[inset_1px_1px_3px_#09152a,inset_-1px_-1px_3px_#0b1d34]"
+              }`}
+            >
               {todo.is_done && (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#0a192f]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-[#0a192f]"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               )}
             </div>
             <div>
-              <h3 className={`font-medium text-lg ${todo.is_done ? 'text-gray-500 line-through' : 'text-gray-200'}`}>
+              <h3
+                className={`font-medium text-lg ${
+                  todo.is_done ? "text-gray-500 line-through" : "text-gray-200"
+                }`}
+              >
                 {todo.title}
               </h3>
               {todo.description && (
-                <p className={`text-sm mt-1 ${todo.is_done ? 'text-gray-600' : 'text-gray-400'}`}>
+                <p
+                  className={`text-sm mt-1 ${
+                    todo.is_done ? "text-gray-600" : "text-gray-400"
+                  }`}
+                >
                   {todo.description}
+                </p>
+              )}
+              {todo.deadline && (
+                <p
+                  className={`text-sm mt-1 italic flex items-center gap-2 ${
+                    todo.is_done ? "text-gray-600" : "text-gray-400"
+                  }`}
+                >
+                  Deadline:{" "}
+                  {new Date(todo.deadline).toLocaleDateString("id-ID", {
+                    weekday: "short",
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                  {deadlineStatus === "near" && (
+                    <span className="text-yellow-400 font-bold animate-pulse">
+                      ⚠ Segera!
+                    </span>
+                  )}
+                  {deadlineStatus === "overdue" && (
+                    <span className="text-red-500 font-bold animate-pulse">
+                      ❌ Terlewat!
+                    </span>
+                  )}
                 </p>
               )}
             </div>
@@ -65,7 +125,11 @@ export default function TodoCard({ todo, onToggleDone, onDelete }) {
 
       <ConfirmModal
         show={modalType !== null}
-        title={modalType === "done" ? "Tandai sebagai selesai?" : "Yakin ingin hapus?"}
+        title={
+          modalType === "done"
+            ? "Tandai sebagai selesai?"
+            : "Yakin ingin hapus?"
+        }
         message={
           modalType === "done"
             ? `Tugas "${todo.title}" akan ditandai selesai.`
