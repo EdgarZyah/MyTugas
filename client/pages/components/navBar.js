@@ -15,13 +15,6 @@ export default function Navbar() {
       
       <div className="flex gap-2 sm:gap-4">
         <Link
-          href="/"
-          className="relative px-2 sm:px-4 py-2 text-gray-300 hover:text-[#64ffda] font-medium group"
-        >
-          Home
-          <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-[#64ffda] to-[#5cebcb] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-        </Link>
-        <Link
           href="/login"
           className="px-2 sm:px-4 py-2 text-gray-300 hover:text-[#64ffda] font-medium group relative"
         >
