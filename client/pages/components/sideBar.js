@@ -31,27 +31,6 @@ export default function Sidebar({ onSelect, activeView }) {
         </div>
         <div className="space-y-3">
           <button
-            onClick={handleHome}
-            className="w-full text-left px-4 py-3 rounded-xl flex items-center bg-[#0a192f] text-gray-300 shadow-[3px_3px_6px_#09152a,-3px_-3px_6px_#0b1d34] hover:text-[#64ffda] transition-all"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-3"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-              />
-            </svg>
-            Home
-          </button>
-
-          <button
             onClick={() => onSelect("add")}
             className={`w-full text-left px-4 py-3 rounded-xl flex items-center transition-all ${
               activeView === "add"
@@ -128,7 +107,7 @@ export default function Sidebar({ onSelect, activeView }) {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal Logout */}
       {showLogoutModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
           <div className="bg-[#0a192f] p-6 rounded-xl shadow-xl text-white w-full max-w-sm mx-auto animate-fade-in">
