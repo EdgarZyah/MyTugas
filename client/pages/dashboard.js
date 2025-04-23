@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Sidebar from "./components/sideBar";
-import TodoForm from "./components/todoForm"; // komponen tambah todo
-import TodoList from "./components/todoList"; // tampil todo
+import TodoForm from "./components/todoForm";
+import TodoList from "./components/todoList";
 
 export default function Dashboard() {
   const router = useRouter();

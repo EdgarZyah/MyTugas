@@ -5,14 +5,14 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const db = require("./models");
 
-/* db.sequelize.sync().then(() => {
+db.sequelize.sync().then(() => {
   console.log("Database synced.");
-}); */
+});
 
-// ⚠️ Akan menghapus data lama
+/* // Drop database and sync
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Database dropped & synced.");
-});
+}); */
 
 app.use(cors());
 app.use(express.json());
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-// Routes here...
+// Routes
 const todoRoutes = require("./routes/todos");
 app.use("/todos", todoRoutes);
 

@@ -1,8 +1,8 @@
 import express from "express";
-import { Todo } from "../models"; // sesuaikan path kalau perlu
+import { Todo } from "../models";
 const router = express.Router();
 
-// GET semua todo
+// GET All Tugas
 router.get("/", async (req, res) => {
   try {
     const todos = await Todo.findAll({ order: [["createdAt", "DESC"]] });
@@ -12,14 +12,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST buat todo baru
+// POST Tugas baru
 router.post("/", async (req, res) => {
   try {
     const { title, description, deadline } = req.body;
     const newTodo = await Todo.create({
       title,
       description,
-      deadline,         // ← tambahkan ini
+      deadline,
       is_done: false,
     });
     res.status(201).json(newTodo);
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// PUT update todo lengkap (title, description, deadline, is_done)
+// PUT update Tugas
 router.put("/:id", async (req, res) => {
   try {
     const todo = await Todo.findByPk(req.params.id);
@@ -49,7 +49,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE todo
+// DELETE Tugas
 router.delete("/:id", async (req, res) => {
   try {
     const todo = await Todo.findByPk(req.params.id);

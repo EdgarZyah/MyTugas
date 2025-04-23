@@ -23,7 +23,7 @@ export default function TodoList() {
   }, [dispatch]);
 
   useEffect(() => {
-    // Reset ke halaman 1 saat tampilan diubah atau pencarian/filter berubah
+    // Reset to first page
     setCurrentPage(1);
   }, [search, sort, isGrid]);
 
@@ -139,7 +139,7 @@ export default function TodoList() {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
         <input
           type="text"
-          placeholder="Cari todo..."
+          placeholder="Cari Tugas..."
           className="px-4 py-2 w-full sm:w-1/2 rounded-md bg-[#0a192f] border border-gray-700 text-white"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -245,7 +245,7 @@ export default function TodoList() {
         )}
       </div>
 
-      {/* Responsive Pagination - Always at bottom */}
+      {/* Pagination*/}
       {totalPages > 1 && (
         <div className="mt-auto pt-4">
           <div className="h-full flex flex-wrap justify-center gap-2">

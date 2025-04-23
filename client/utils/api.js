@@ -1,11 +1,10 @@
-// utils/api.js
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000", // ganti kalau beda port
+  baseURL: "http://localhost:5000",
 });
 
-// Interceptor untuk menyisipkan token
+// Interceptor to save token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

@@ -1,4 +1,3 @@
-// components/ConfirmModal.js
 export default function ConfirmModal({ show, title, message, onConfirm, onCancel }) {
     if (!show) return null;
   

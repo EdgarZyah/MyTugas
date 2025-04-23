@@ -14,7 +14,7 @@ export default function EditTodoForm({ todo, onClose }) {
       updateTodo(todo.id, {
         title,
         description,
-        deadline, // pastikan ini dikirim!
+        deadline,
       })
     );
     onClose();

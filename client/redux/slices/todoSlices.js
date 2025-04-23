@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../utils/api";
 
-// 🔁 GET todo berdasarkan user yang sedang login
+// 🔁 GET Tugas current user
 export const fetchTodos = createAsyncThunk(
   "todos/fetchTodos",
   async (_, { rejectWithValue }) => {
@@ -16,7 +16,7 @@ export const fetchTodos = createAsyncThunk(
   }
 );
 
-// ➕ POST todo baru
+// ➕ POST New Tugas
 export const createTodo = createAsyncThunk(
   "todos/createTodo",
   async (data, { rejectWithValue }) => {
@@ -29,7 +29,7 @@ export const createTodo = createAsyncThunk(
   }
 );
 
-// ✅ TOGGLE selesai
+// ✅ TOGGLE Tugas selesai
 export const toggleTodoDone = createAsyncThunk(
   "todos/toggleDone",
   async (id, { getState, rejectWithValue }) => {
@@ -46,7 +46,7 @@ export const toggleTodoDone = createAsyncThunk(
   }
 );
 
-// ❌ DELETE todo
+// ❌ DELETE Tugas
 export const deleteTodo = createAsyncThunk(
   "todos/deleteTodo",
   async (id, { rejectWithValue }) => {
@@ -59,7 +59,7 @@ export const deleteTodo = createAsyncThunk(
   }
 );
 
-// ✏️ EDIT todo
+// ✏️ EDIT Tugas
 export const updateTodo = createAsyncThunk(
   "todos/updateTodo",
   async ({ id, data }, { rejectWithValue }) => {
