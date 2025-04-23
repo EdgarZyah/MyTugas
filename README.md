@@ -1,6 +1,7 @@
 📝 MyTugas - Todo List App
 
 Aplikasi Todo List berbasis web yang mendukung autentikasi user, pengelolaan tugas pribadi, dan fitur deadline. Dibangun dengan Next.js + Redux di frontend dan Node.js + Express + Sequelize + MySQL di backend.
+
 🚀 Fitur
 
     Registrasi dan login dengan autentikasi JWT
