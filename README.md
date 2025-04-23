@@ -17,45 +17,46 @@ Aplikasi Todo List berbasis web yang mendukung autentikasi user, pengelolaan tug
 ⚙️ Setup Backend (server)
 1. Masuk ke direktori backend
 
-### cd server 
+    ### cd server 
 
 2. Install dependencies
 
-### npm install
+    ### npm install
 
 3. Konfigurasi database
 
-### Buat file .env berdasarkan .env.example:
-
-DB_NAME=mytugas_db
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_HOST=localhost
-JWT_SECRET=your_jwt_secret
+    ### Buat file .env berdasarkan .env.example:
+    
+    DB_NAME=mytugas_db
+    DB_USER=root
+    DB_PASSWORD=yourpassword
+    DB_HOST=localhost
+    JWT_SECRET=your_jwt_secret
 
 4. Setup database (MySQL)
-
-### npx sequelize db:create
-### npx sequelize db:migrate
-### npx sequelize db:seed:all
+    
+    ### npx sequelize db:create
+    ### npx sequelize db:migrate
+    ### npx sequelize db:seed:all
 
 5. Jalankan backend
 
-### node server.js
+    ### node server.js
 
 API akan berjalan di http://localhost:5000
+
 💻 Setup Frontend (client)
 1. Masuk ke direktori frontend
 
-cd client
+    ### cd client
 
 2. Install dependencies
 
-npm install
+    ### npm install
 
 4. Jalankan frontend (development)
 
-npm run dev
+    ### npm run dev
 
 Frontend berjalan di http://localhost:3000
 
