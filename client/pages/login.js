@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import AuthForm from "./components/authForm";
+import LoginForm from "./components/loginForm";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,5 +12,5 @@ export default function LoginPage() {
     }
   }, []);
 
-  return <AuthForm mode="login" />;
+  return <LoginForm />;
 }
