@@ -13,13 +13,6 @@ Aplikasi Todo List berbasis web yang mendukung autentikasi user, pengelolaan tug
 
     UI responsif dengan Tailwind CSS
 
-📁 Struktur Direktori
-
-mytugas/
-├── server/       # Backend (Node.js + Express + Sequelize)
-├── client/       # Frontend (Next.js + Redux + Tailwind CSS)
-└── README.md
-
 ⚙️ Setup Backend (server)
 1. Masuk ke direktori backend
 
