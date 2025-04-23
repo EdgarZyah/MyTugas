@@ -5,9 +5,9 @@ Aplikasi Todo List berbasis web yang mendukung autentikasi user, pengelolaan tug
 
     Registrasi dan login dengan autentikasi JWT
 
-    Menambahkan, mengedit, menandai selesai, dan menghapus todo
+    Menambahkan, mengedit, menandai selesai, dan menghapus tugas
 
-    Todo hanya ditampilkan sesuai dengan user yang login
+    Tugas hanya ditampilkan sesuai dengan user yang login
 
     Deadline dengan notifikasi "Segera" dan "Terlewat"
 
