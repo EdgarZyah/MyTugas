@@ -1,31 +1,35 @@
-// Tambahkan field deadline
 module.exports = (sequelize, DataTypes) => {
   const Todo = sequelize.define("Todo", {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [1, 25],
+      },
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     is_done: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
     deadline: {
-      type: DataTypes.DATE, // field baru
+      type: DataTypes.DATE,
       allowNull: true,
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
   });
 
   Todo.associate = (models) => {
     Todo.belongsTo(models.User, {
-      foreignKey: "user_id",
-      as: "user"
+      foreignKey: "userId",
+      as: "user",
     });
   };
 
